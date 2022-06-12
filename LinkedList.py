@@ -1,10 +1,13 @@
-# A complete working Python program to find length of a
-# Linked List iteratively
-
-# Node class
-
-
-from asyncio.windows_events import NULL
+#This code have functions like
+'''
+push - Will insert data
+insert at head - Can insert new data and make that as head
+insert at index - Can insert any value at any index without replacing the value
+delete - Delete all the given key in the list
+getcount - Get size of list
+reverse - Reverse the linked list
+printlist - Print the whole list
+'''
 
 
 class Node:
@@ -23,24 +26,15 @@ class LinkedList:
 
     def push(self,new_data):
         new_node=Node(new_data)
-        new_node.next=NULL
+        new_node.next=None
         if self.head==None:
             self.head=new_node
         else:
             t=self.head
-            while(t.next!=NULL):
+            while(t.next!=None):
                 t=t.next
                 continue
             t.next=new_node
-
-    def append(self,new_data):
-        new_node=Node(new_data)
-        new_node.next=NULL
-        t=self.head
-        while(t.next!=NULL):
-            t=t.next
-            continue
-        t.next=new_node
     
     def insetAthead(self,new_data):
         new_node=Node(new_data)
@@ -66,13 +60,14 @@ class LinkedList:
             if(flag==0):
                 print("Index Out of Bound")
 
+
     def delete(self,data):
         temp=self.head
         i=0
         while(i<LinkedList.getCount(self)-1):
             if temp.next.data==data:
-                if temp.next.next==NULL:
-                    temp.next=NULL
+                if temp.next.next==None:
+                    temp.next=None
                     i=i+1
                 else:
                     temp.next=temp.next.next
@@ -90,8 +85,8 @@ class LinkedList:
 
     def reverse(self):
         current=self.head
-        prev=NULL
-        while(current!=NULL):
+        prev=None
+        while(current!=None):
             n=current.next
             current.next=prev
             prev=current
@@ -116,13 +111,10 @@ if __name__=='__main__':
     llist.push(1)
     llist.push(2)
     llist.push("scscsc")
-    llist.append(90)
     llist.insetAthead(98)
-    llist.insertAtindex(23,1)
-    #llist.print_list()
-    #print ("Count of nodes is :",llist.getCount())
-    llist.delete(1)
     llist.print_list()
-    #print ("Count of nodes is :",llist.getCount())
+    llist.insertAtindex(23,1)
+    llist.delete(1)
+    print ("\nCount of nodes is :",llist.getCount())
     llist.reverse()
     llist.print_list()
