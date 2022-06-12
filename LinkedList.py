@@ -3,6 +3,7 @@
 push - Will insert data
 insert at head - Can insert new data and make that as head
 insert at index - Can insert any value at any index without replacing the value
+replace - Can replace any value using index
 delete - Delete all the given key in the list
 getcount - Get size of list
 reverse - Reverse the linked list
@@ -60,6 +61,29 @@ class LinkedList:
             if(flag==0):
                 print("Index Out of Bound")
 
+    def replace(self,new_data,i):
+        new_node=Node(new_data)
+        if i==0:
+            new_node.next=self.head.next
+            self.head=new_node
+        else:
+            count=1
+            flag=0
+            temp = self.head.next # Initialise temp
+            prev=self.head
+            while (temp):
+                if count==i:
+                    new_node.next=temp.next
+                    prev.next=new_node
+                    temp=None
+                    flag=1
+                    break
+                prev=temp
+                temp=temp.next
+                count=count+1
+            if(flag==0):
+                print("Index Out of Bound")
+
 
     def delete(self,data):
         temp=self.head
@@ -112,8 +136,9 @@ if __name__=='__main__':
     llist.push(2)
     llist.push("scscsc")
     llist.insetAthead(98)
-    llist.print_list()
     llist.insertAtindex(23,1)
+    llist.print_list()
+    llist.replace("ABC",6)
     llist.delete(1)
     print ("\nCount of nodes is :",llist.getCount())
     llist.reverse()
